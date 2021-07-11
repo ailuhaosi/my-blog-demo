@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.gd.modules.biz.region.dao.RegionDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.gd.modules.biz.region.entity.RegionEntity" id="regionMap">
+        <result property="regionId" column="region_id"/>
+        <result property="regionTitle" column="region_title"/>
+        <result property="regionContact" column="region_contact"/>
+        <result property="regionMobile" column="region_mobile"/>
+        <result property="regionLogo" column="region_logo"/>
+        <result property="regionRemark" column="region_remark"/>
+        <result property="regionProvince" column="region_province"/>
+        <result property="regionCity" column="region_city"/>
+        <result property="regionDistict" column="region_distict"/>
+        <result property="regionAddress" column="region_address"/>
+        <result property="regionLongitude" column="region_longitude"/>
+        <result property="regionLatitude" column="region_latitude"/>
+        <result property="regionCreator" column="region_creator"/>
+        <result property="regionCreatetime" column="region_createtime"/>
+        <result property="regionUpdatetime" column="region_updatetime"/>
+        <result property="regionStatus" column="region_status"/>
+        <result property="regionMiniprogram" column="region_miniprogram"/>
+        <result property="creatorName" column="creator_name"/>
+    </resultMap>
+
+    <!--<select id="getRegionList" resultType="io.gd.modules.biz.region.entity.RegionEntity">
+        SELECT * FROM region WHERE region_title=#{params.regionTitle}
+        <if test="params.regionTitle!=null or params.regionContact!=null">
+            WHERE
+        </if>
+        <if test="params.regionTitle!=null and params.regionContact!=null">
+            WHERE
+        </if>
+    </select>-->
+</mapper>
