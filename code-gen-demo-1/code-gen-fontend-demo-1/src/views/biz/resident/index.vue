@@ -8,12 +8,12 @@
     import {FilterFormTableModal,mapKeysToTarget,cloneDeep} from "filter-form-table-modal/packages"
 
   import {
-    getRegionList,
-    deleteRegionByIds,
-    getRegionInfo,
-    saveRegion,
-    updateRegion,
-  } from "@/api/biz/region.js";
+    getResidentList,
+    deleteResidentByIds,
+    getResidentInfo,
+    saveResident,
+    updateResident,
+  } from "@/api/biz/resident.js";
 
     // 按钮权限控制
     //import { checkBtnPermission } from "@/utils/permission";// 导入自定义按钮权限逻辑;默认按钮权限开放
@@ -21,7 +21,7 @@
     const myFilterFormTableModal = FilterFormTableModal({ checkBtnPermission:(that, key) => true });
 
   export default {
-    name: "region",
+    name: "resident",
     mixins: [myFilterFormTableModal],
     data() {
       return {
@@ -31,30 +31,16 @@
         //formAboveTableCanToggledShowStatusOverIdx: 4, //formItemMetaListAboveTable中索引>=4的统统隐藏
         formItemMetaListAboveTable: [
                                   {
-    label: "区域名称：",
+    label: "住户姓名：",
     type: "Input",
-    key: "region-title",
-    componentAttr: {
-                                                                                                                                                                                                                                                                                        },
-                                                                                                                                                                                                                                                                                },
-            {
-    label: "联系人：",
-    type: "Input",
-    key: "region-contact",
+    key: "resident-name",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
             {
     label: "联系电话：",
     type: "Input",
-    key: "region-mobile",
-    componentAttr: {
-                                                                                                                                                                                                                                                                                        },
-                                                                                                                                                                                                                                                                                },
-            {
-    label: "区域图标：",
-    type: "Input",
-    key: "region-logo",
+    key: "resident-mobile",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
@@ -66,7 +52,7 @@
         /**
          * 表格 相关数据开始
          * */
-        tableCommonAttr: { "row-key": "region-id" },
+        tableCommonAttr: { "row-key": "resident-id" },
         tableColMetaData: [
           {
             colType: "selection",
@@ -78,37 +64,37 @@
 
 
               {
-    label: "区域名称：",
+    label: "住户姓名：",
     type: "Text",
-    key: "region-title",
-    componentAttr: {
-                                                                                                                                                                                                                                                                                        },
-                                                                                                                                                                                                                                                                                },
-            {
-    label: "联系人：",
-    type: "Text",
-    key: "region-contact",
+    key: "resident-name",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
             {
     label: "联系电话：",
     type: "Text",
-    key: "region-mobile",
+    key: "resident-mobile",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
             {
-    label: "区域图标：",
+    label: "住户类型：",
     type: "Text",
-    key: "region-logo",
+    key: "resident-type",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
             {
-    label: "备注：",
+    label: "住户类型：",
     type: "Text",
-    key: "region-remark",
+    key: "resident-remark",
+    componentAttr: {
+                                                                                                                                                                                                                                                                                        },
+                                                                                                                                                                                                                                                                                },
+            {
+    label: "住户所在小区：",
+    type: "Text",
+    key: "belongto-region",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
@@ -130,42 +116,48 @@
          * 弹窗表单 相关数据开始
          */
         // 新增表单、编辑表单的:    表单元数据  与  表单字段绑定的数据(初始化的数据)
-        regionSaveDialogFormItemMetaList: [
+        residentSaveDialogFormItemMetaList: [
           
                       
                       
                                       {
-    label: "区域名称：",
+    label: "住户姓名：",
     type: "Input",
-    key: "region-title",
-    componentAttr: {
-                                                                                                                                                                                                                                                                                        },
-                                                                                                                                                                                                                                                                                },
-            {
-    label: "联系人：",
-    type: "Input",
-    key: "region-contact",
+    key: "resident-name",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
             {
     label: "联系电话：",
     type: "Input",
-    key: "region-mobile",
+    key: "resident-mobile",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
             {
-    label: "区域图标：",
+    label: "住户类型：",
+    type: "Select",
+    key: "resident-type",
+    componentAttr: {
+                                                                                                                                                                                                                                                                        placeholder: "请选择",
+                
+                                                                },
+                                                                                                                options: [
+                                        {label:"租户",value:1},
+                                        {label:"房东",value:2},
+                                    ],
+                                                                                                                                                                                                                                            },
+            {
+    label: "住户类型：",
     type: "Input",
-    key: "region-logo",
+    key: "resident-remark",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
             {
-    label: "备注：",
+    label: "住户所在小区：",
     type: "Input",
-    key: "region-remark",
+    key: "belongto-region",
     componentAttr: {
                                                                                                                                                                                                                                                                                         },
                                                                                                                                                                                                                                                                                 },
@@ -183,11 +175,11 @@
        *  */
       getBussinessCurdMethodName(curdType) {
         const allCurdMethodNames = {
-          Save: saveRegion,
-          Delete: deleteRegionByIds,
-          Update: updateRegion,
-          GetList: getRegionList,
-          GetInfo: getRegionInfo,
+          Save: saveResident,
+          Delete: deleteResidentByIds,
+          Update: updateResident,
+          GetList: getResidentList,
+          GetInfo: getResidentInfo,
         };
         return allCurdMethodNames[curdType];
       },
@@ -198,10 +190,10 @@
        *  */
       getBussinessBtnPerms(btnType) {
         const allBtnPerms = {
-          Search: "biz:region:list",
-          Save: "biz:region:save",
-          Update: "biz:region:update",
-          Delete: "biz:region:delete",
+          Search: "biz:resident:list",
+          Save: "biz:resident:save",
+          Update: "biz:resident:update",
+          Delete: "biz:resident:delete",
         };
         return allBtnPerms[btnType];
       },

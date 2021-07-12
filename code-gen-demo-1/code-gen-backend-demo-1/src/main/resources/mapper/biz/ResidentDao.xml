@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.gd.modules.biz.resident.dao.ResidentDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.gd.modules.biz.resident.entity.ResidentEntity" id="residentMap">
+        <result property="residentId" column="residentId"/>
+        <result property="residentName" column="residentName"/>
+        <result property="residentMobile" column="residentMobile"/>
+        <result property="residentType" column="residentType"/>
+        <result property="residentRemark" column="residentRemark"/>
+        <result property="belongtoRegion" column="belongToRegion"/>
+        <result property="residentCreatetime" column="residentCreatetime"/>
+        <result property="residentUpdatetime" column="residentUpdatetime"/>
+    </resultMap>
+
+
+</mapper>

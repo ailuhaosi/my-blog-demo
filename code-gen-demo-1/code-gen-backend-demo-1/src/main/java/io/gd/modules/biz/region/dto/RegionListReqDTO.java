@@ -17,12 +17,12 @@ import javax.validation.constraints.NotNull;
 public class RegionListReqDTO {
 
     
-                                    @ApiModelProperty(value = "区域名称")
+                                    @ApiModelProperty(value = "")
+                private Integer regionId;
+                            @ApiModelProperty(value = "区域名称")
                 private String regionTitle;
                             @ApiModelProperty(value = "联系人")
                 private String regionContact;
-                            @ApiModelProperty(value = "")
-                private Integer regionId;
                             @ApiModelProperty(value = "联系电话")
                 private String regionMobile;
                             @ApiModelProperty(value = "区域图标")

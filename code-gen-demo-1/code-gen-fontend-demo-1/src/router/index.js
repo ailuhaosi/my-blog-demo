@@ -104,6 +104,15 @@ export const constantRoutes = [{
       icon: 'dashboard',
       noCache: true,
     }
+  },{
+    path: 'resident',
+    component: () => import('@/views/biz/resident/index.vue'),
+    name: '住户管理',
+    meta: {
+      title: '住户管理',
+      icon: 'dashboard',
+      noCache: true,
+    }
   }]
 }
 
