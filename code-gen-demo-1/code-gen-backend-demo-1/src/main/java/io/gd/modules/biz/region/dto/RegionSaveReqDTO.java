@@ -32,4 +32,6 @@ public class RegionSaveReqDTO {
     private String regionMobile;
                                 @ApiModelProperty(value = "区域图标")
     private String regionLogo;
+                                @ApiModelProperty(value = "备注")
+    private String regionRemark;
                         }

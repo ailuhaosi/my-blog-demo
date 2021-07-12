@@ -38,10 +38,10 @@ service.interceptors.response.use(
     const res = response.data
     // console.log(res, '*****')
     // console.log(response, 'kkkkkkkkkk==========', res.code === 500);
-    const passUrls = ['/api/dev/redis/get'] // , '/api/biz/card/save', '/api/biz/card/regcardAll', '/api/biz/card/delcardAll'
+    const passUrls = ['/api/sys/generator/download-sourcecode'] // , '/api/biz/card/save', '/api/biz/card/regcardAll', '/api/biz/card/delcardAll'
     const canPass = passUrls.some(el => response.request.responseURL.indexOf(el))
     // console.log(response.request.responseURL, '=============', canPass,'111122222255555512345675555'.indexOf('1234567'));
-    if (canPass && [0, 1, 4].includes(res.code)) {
+    if (canPass) {
       return res
     } else if (res.code !== 0) {
       // 不管后台返回什么登出时,始终允许
